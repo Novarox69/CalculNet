@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculateur auto-entrepreneur 2026 : revenu net, cotisations URSSAF, plafonds | CalculNet</title>
+<meta name="description" content="Calculez gratuitement votre revenu net d’auto-entrepreneur en 2026 : cotisations URSSAF, ACRE, versement libératoire, plafonds et seuil de TVA. Sans inscription.">
+<meta name="theme-color" content="#0F1F3D">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Comment calculer son revenu net d’auto-entrepreneur ?","acceptedAnswer":{"@type":"Answer","text":"On retire du chiffre d’affaires encaissé les cotisations sociales (un pourcentage selon l’activité), la contribution à la formation professionnelle et, si vous l’avez choisi, le versement libératoire."}},
+{"@type":"Question","name":"Quel est le plafond de chiffre d’affaires en 2026 ?","acceptedAnswer":{"@type":"Answer","text":"203 100 € pour la vente de marchandises et 83 600 € pour les prestations de services, valables de 2026 à 2028."}},
+{"@type":"Question","name":"Qu’est-ce que l’ACRE ?","acceptedAnswer":{"@type":"Answer","text":"Une aide à la création qui réduit les cotisations sociales la première année. Pour les créations à partir du 1er juillet 2026, la réduction est de 25 %."}}]}</script>
+<style>
+:root{--bg:#EEF2F7;--card:#fff;--ink:#0F1F3D;--soft:#566380;--line:#D5DDE9;--accent:#E8590C;--on:#fff;--field:#F6F8FB;--ok:#1B7F5C;--warn:#B42318;--blue:#2F5BEA;--hero:#0F1F3D;--heroink:#fff}
+@media(prefers-color-scheme:dark){:root{--bg:#0C1426;--card:#142038;--ink:#EAF0FB;--soft:#9AA8C4;--line:#26355A;--accent:#FF8A4C;--on:#0C1426;--field:#0F1A31;--ok:#4CC9A0;--warn:#FF8F85;--blue:#7C9BFF;--hero:#08101F}}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px;-webkit-text-size-adjust:100%}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--blue)}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px}
+header{position:sticky;top:0;z-index:5;background:var(--hero);color:var(--heroink)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.logo{font-weight:800;font-size:1.15rem;letter-spacing:-.02em;color:inherit;text-decoration:none}
+.logo b{color:var(--accent)}
+nav{display:flex;gap:16px;font-size:.92rem;overflow-x:auto}
+nav a{color:inherit;text-decoration:none;opacity:.85;white-space:nowrap}nav a:hover{opacity:1;text-decoration:underline}
+.hero{background:var(--hero);color:var(--heroink);padding:34px 0 90px}
+h1{font-size:clamp(1.8rem,6.5vw,2.9rem);line-height:1.1;letter-spacing:-.03em;margin:0 0 12px;max-width:16em}
+.hero p{margin:0 0 18px;max-width:34em;opacity:.85}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}
+.chips li{border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:3px 12px;font-size:.85rem}
+.tool{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-top:-64px;box-shadow:0 12px 34px rgba(15,31,61,.18);display:grid;grid-template-columns:1fr}
+@media(min-width:820px){.tool{grid-template-columns:1fr 1.05fr}}
+.inputs{padding:22px}.out{padding:22px;background:var(--field);border-radius:0 0 16px 16px}
+@media(min-width:820px){.out{border-radius:0 16px 16px 0;border-left:1px solid var(--line)}}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--field);border:1px solid var(--line);border-radius:10px;padding:3px;margin-bottom:16px}
+.seg button{font:inherit;font-size:.92rem;border:0;background:none;color:var(--soft);padding:8px;border-radius:8px;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--card);font-weight:600}
+label{display:block;font-weight:600;margin:0 0 5px;font-size:.95rem}
+.row{margin-bottom:14px}.two{display:grid;grid-template-columns:1.3fr 1fr;gap:10px}
+input[type=number],select{width:100%;font:inherit;padding:11px;border:1px solid var(--line);border-radius:8px;background:var(--field);color:var(--ink)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.check{display:flex;gap:10px;font-weight:400;margin:0 0 10px;font-size:.93rem;line-height:1.4}
+.check input{margin-top:2px;width:18px;height:18px;flex:none;accent-color:var(--accent)}
+.big{margin:0 0 14px}.big small{color:var(--soft);display:block;font-size:.9rem}
+.big strong{font-family:ui-serif,Georgia,serif;font-size:clamp(2.3rem,10vw,3.2rem);line-height:1.05;font-variant-numeric:tabular-nums;color:var(--accent)}
+.bar{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--line);margin:6px 0 8px}
+.bar i{display:block;height:100%}
+.leg{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.8rem;color:var(--soft);margin-bottom:12px}
+.leg span:before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;background:var(--c)}
+dl{margin:0}.l{display:flex;gap:8px;align-items:baseline;padding:6px 0}
+.l dt{color:var(--soft);font-size:.95rem}.l:after{content:"";order:1;flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px)}
+.l dd{order:2;margin:0;font-weight:700;font-variant-numeric:tabular-nums}
+.tot{border-top:2px solid var(--ink);margin-top:6px;padding-top:6px}
+.msgs{margin:14px 0 0;padding:0;list-style:none;font-size:.9rem}
+.msgs li{border-left:4px solid var(--ok);padding:6px 10px;margin-bottom:8px;background:var(--card);border-radius:0 8px 8px 0}
+.msgs li.w{border-color:var(--warn)}.msgs li.i{border-color:var(--blue)}
+.prog{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:5px}.prog i{display:block;height:100%;background:var(--ok);width:0}
+.btns{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.btn{font:inherit;font-size:.9rem;font-weight:600;border:1px solid var(--ink);background:none;color:var(--ink);padding:8px 14px;border-radius:8px;cursor:pointer}
+.btn:hover{background:var(--ink);color:var(--card)}
+.slot{margin:30px 0;padding:18px;border:1px dashed var(--line);border-radius:10px;color:var(--soft);font-size:.88rem;text-align:center}
+section{margin:44px 0}h2{font-size:1.5rem;letter-spacing:-.02em;line-height:1.2;margin:0 0 12px}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.93rem;font-variant-numeric:tabular-nums}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}tr:last-child td{border:0}
+th{background:var(--field);font-size:.85rem;color:var(--soft)}td.n{text-align:right;font-weight:600}
+tr.cur td{background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.steps{counter-reset:s;list-style:none;padding:0;display:grid;gap:12px}
+.steps li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 14px 14px 56px;position:relative}
+.steps li:before{content:counter(s);position:absolute;left:14px;top:12px;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--card);display:grid;place-items:center;font-weight:700}
+.steps b{display:block}
+.tools{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.tools div{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--card)}
+.tools em{font-style:normal;font-size:.8rem;color:var(--soft)}
+.soon{opacity:.7}
+details{border-bottom:1px solid var(--line);padding:12px 0}summary{font-weight:600;cursor:pointer}
+details p{margin:8px 0 0;color:var(--soft)}
+footer{background:var(--hero);color:var(--heroink);padding:30px 0;font-size:.88rem;margin-top:50px}
+footer p{opacity:.8;margin:0 0 10px;max-width:46em}footer a{color:inherit}
+@media print{header,.hero,.slot,.btns,footer,nav{display:none}.tool{margin:0;box-shadow:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="index.html">Calcul<b>Net</b></a>
+<nav><a href="index.html">Tous les outils</a><a href="#calcul">Calculateur</a><a href="#taux">Taux 2026</a><a href="#plafonds">Plafonds</a><a href="#faq">Questions</a></nav></div></header>
+
+<div class="hero" id="haut"><div class="wrap">
+<h1>Combien vous reste-t-il vraiment en auto-entreprise ?</h1>
+<p>Entrez votre chiffre d’affaires, ou le net que vous visez, et obtenez le détail des cotisations URSSAF, de l’impôt et des plafonds à surveiller.</p>
+<ul class="chips"><li>Taux 2026</li><li>100 % gratuit</li><li>Sans inscription</li><li>Aucune donnée enregistrée</li></ul>
+</div></div>
+
+<main class="wrap">
+<div class="tool" id="calcul">
+<div class="inputs">
+<div class="seg" role="group" aria-label="Mode de calcul">
+<button type="button" id="m-ca" aria-pressed="true">Je connais mon CA</button>
+<button type="button" id="m-net" aria-pressed="false">Je vise un net</button></div>
+<div class="two row">
+<div><label for="mont" id="l-mont">Chiffre d’affaires (€)</label><input id="mont" type="number" inputmode="decimal" min="0" step="any" value="3000"></div>
+<div><label for="per">Période</label><select id="per"><option value="12">Par mois</option><option value="4">Par trimestre</option><option value="1">Par an</option></select></div></div>
+<div class="row"><label for="act">Type d’activité</label>
+<select id="act"><option value="vente">Vente de marchandises (BIC)</option><option value="service" selected>Prestation de services commerciale ou artisanale (BIC)</option><option value="bnc">Profession libérale (BNC, SSI)</option><option value="cipav">Profession libérale réglementée (BNC, CIPAV)</option></select></div>
+<label class="check"><input type="checkbox" id="acre"><span>J’ai l’ACRE (-25 % de cotisations la première année)</span></label>
+<label class="check"><input type="checkbox" id="vl"><span>J’ai choisi le versement libératoire de l’impôt</span></label>
+</div>
+<div class="out" aria-live="polite">
+<div class="big"><small id="b-l">Revenu net estimé</small><strong id="b-v">0 €</strong><small id="b-s"></small></div>
+<div class="bar" id="bar"></div>
+<div class="leg"><span style="--c:var(--ok)">Net</span><span style="--c:var(--accent)">Cotisations</span><span style="--c:var(--blue)">Formation</span><span style="--c:var(--soft)">Impôt</span></div>
+<dl>
+<div class="l"><dt>Chiffre d’affaires</dt><dd id="r-ca"></dd></div>
+<div class="l"><dt>Cotisations sociales</dt><dd id="r-cot"></dd></div>
+<div class="l"><dt>Formation professionnelle</dt><dd id="r-cfp"></dd></div>
+<div class="l"><dt>Impôt (versement libératoire)</dt><dd id="r-imp"></dd></div>
+<div class="l tot"><dt>Net</dt><dd id="r-net"></dd></div>
+<div class="l"><dt>Part gardée</dt><dd id="r-pct"></dd></div></dl>
+<ul class="msgs" id="msgs"></ul>
+<div class="btns"><button class="btn" id="copy" type="button">Copier le résultat</button><button class="btn" id="print" type="button">Imprimer</button></div>
+</div></div>
+
+<div class="slot">Espace publicitaire : collez ici le code Google AdSense une fois le compte validé</div>
+
+<section id="compare"><h2>Comparaison selon l’activité</h2>
+<p>Pour le même chiffre d’affaires, voici ce que vous gardez selon la nature de votre activité.</p>
+<div class="scroll"><table><thead><tr><th>Activité</th><th>Cotisations</th><th>Net</th><th>Part gardée</th></tr></thead><tbody id="cmp"></tbody></table></div></section>
+
+<section><h2>Comment ça marche</h2>
+<ol class="steps">
+<li><b>Choisissez votre activité</b>Le taux de cotisations dépend de la nature de ce que vous vendez.</li>
+<li><b>Indiquez vos montants</b>Partez de votre chiffre d’affaires, ou du net que vous voulez toucher.</li>
+<li><b>Lisez le détail</b>Cotisations, impôt, plafonds et seuil de TVA s’affichent en direct.</li></ol></section>
+
+<section id="taux"><h2>Taux de cotisations 2026</h2>
+<div class="scroll"><table><thead><tr><th>Activité</th><th>Cotisations</th><th>Formation</th><th>Versement libératoire</th></tr></thead><tbody id="tx"></tbody></table></div>
+<p style="font-size:.88rem;color:var(--soft)">Pourcentages appliqués au chiffre d’affaires encaissé. À vérifier sur autoentrepreneur.urssaf.fr.</p></section>
+
+<section id="plafonds"><h2>Plafonds à ne pas dépasser en 2026</h2>
+<div class="scroll"><table><thead><tr><th>Activité</th><th>Plafond micro</th><th>Franchise de TVA</th></tr></thead><tbody>
+<tr><td>Vente de marchandises</td><td class="n">203 100 €</td><td class="n">85 000 € (93 500 € majoré)</td></tr>
+<tr><td>Prestations de services</td><td class="n">83 600 €</td><td class="n">37 500 € (41 250 € majoré)</td></tr></tbody></table></div></section>
+
+<div class="slot">Espace pour vos liens d’affiliation : banque pro, logiciel de facturation, assurance</div>
+
+<section><h2>Prochains outils</h2><div class="tools">
+<div><b>Salaire brut en net</b><br><em>Bientôt</em></div>
+<div class="soon"><b>Simulateur de prêt</b><br><em>Bientôt</em></div>
+<div class="soon"><b>Calcul de TVA</b><br><em>Bientôt</em></div></div></section>
+
+<section id="faq"><h2>Questions fréquentes</h2>
+<details><summary>Comment calculer son revenu net d’auto-entrepreneur ?</summary><p>On retire du chiffre d’affaires encaissé les cotisations sociales, la formation professionnelle et, si vous l’avez choisi, le versement libératoire. Sans chiffre d’affaires, pas de cotisations.</p></details>
+<details><summary>C’est quoi le versement libératoire ?</summary><p>Une option qui fait payer l’impôt sur le revenu en même temps que les cotisations, avec un pourcentage fixe du chiffre d’affaires. Elle est soumise à des conditions de revenus.</p></details>
+<details><summary>Qu’est-ce que l’ACRE ?</summary><p>Une aide à la création qui réduit les cotisations la première année. Pour les créations à partir du 1er juillet 2026, la réduction est de 25 %.</p></details>
+<details><summary>Que se passe-t-il si je dépasse le plafond ?</summary><p>Vous restez micro-entrepreneur jusqu’au 31 décembre de la seconde année de dépassement, puis vous passez au régime réel.</p></details>
+<details><summary>Le résultat est-il exact ?</summary><p>C’est une estimation fondée sur les taux publiés. Votre situation (outre-mer, activité mixte) peut changer le résultat.</p></details></section>
+</main>
+
+<footer id="mentions"><div class="wrap">
+<p><b>CalculNet</b> est un outil indicatif, sans valeur de conseil fiscal ou comptable. Taux mis à jour chaque année.</p>
+<p>Mentions légales : éditeur [votre nom ou pseudo], contact [votre e-mail]. Hébergement : GitHub Pages.</p>
+<p>Confidentialité : les calculs se font dans votre navigateur et aucune donnée saisie n’est envoyée ni enregistrée. Des cookies publicitaires pourront être utilisés si de la publicité est affichée.</p>
+</div></footer>
+
+<script>
+/* TAUX 2026 à vérifier chaque 1er janvier sur autoentrepreneur.urssaf.fr */
+var A={vente:{n:"Vente de marchandises",cot:12.3,cfp:.1,vl:1,pl:203100,tva:85000,tvm:93500},
+service:{n:"Services commerciaux ou artisanaux",cot:21.2,cfp:.3,vl:1.7,pl:83600,tva:37500,tvm:41250},
+bnc:{n:"Libéral (SSI)",cot:25.6,cfp:.2,vl:2.2,pl:83600,tva:37500,tvm:41250},
+cipav:{n:"Libéral réglementé (CIPAV)",cot:23.2,cfp:.2,vl:2.2,pl:83600,tva:37500,tvm:41250}};
+var ACRE=.25,mode="ca",$=function(i){return document.getElementById(i)};
+var eur=function(n){return n.toLocaleString("fr-FR",{style:"currency",currency:"EUR",maximumFractionDigits:0})};
+var pc=function(n){return n.toFixed(1).replace(".",",")+" %"};
+function taux(k,acre,vl){var a=A[k];return{cot:a.cot/100*(acre?1-ACRE:1),cfp:a.cfp/100,imp:vl?a.vl/100:0}}
+function calc(){
+ var m=parseFloat($("mont").value)||0,k=$("act").value,f=+$("per").value,a=$("acre").checked,v=$("vl").checked;
+ var t=taux(k,a,v),r=t.cot+t.cfp+t.imp,ca,net;
+ if(mode==="ca"){ca=m;net=ca*(1-r)}else{net=m;ca=net/(1-r)}
+ var cot=ca*t.cot,cfp=ca*t.cfp,imp=ca*t.imp;
+ $("b-l").textContent=mode==="ca"?"Revenu net estimé":"Chiffre d’affaires à réaliser";
+ $("b-v").textContent=eur(mode==="ca"?net:ca);
+ $("b-s").textContent=f===12?"":"soit "+eur((mode==="ca"?net:ca)*f/12)+" par mois en moyenne";
+ $("r-ca").textContent=eur(ca);$("r-cot").textContent="-"+eur(cot);$("r-cfp").textContent="-"+eur(cfp);
+ $("r-imp").textContent=v?"-"+eur(imp):"non retenu";$("r-net").textContent=eur(net);
+ $("r-pct").textContent=ca>0?pc(net/ca*100):"-";
+ var w=function(x){return ca>0?(x/ca*100).toFixed(2):0};
+ $("bar").innerHTML='<i style="width:'+w(net)+'%;background:var(--ok)"></i><i style="width:'+w(cot)+'%;background:var(--accent)"></i><i style="width:'+w(cfp)+'%;background:var(--blue)"></i><i style="width:'+w(imp)+'%;background:var(--soft)"></i>';
+ var an=ca*f,s=A[k],h="",u=Math.min(100,an/s.pl*100);
+ h+='<li class="'+(an>s.pl?"w":"")+'">Plafond micro : '+eur(an)+' par an sur '+eur(s.pl)+' ('+pc(an/s.pl*100)+')<div class="prog"><i style="width:'+u+'%;background:'+(an>s.pl?"var(--warn)":"var(--ok)")+'"></i></div></li>';
+ if(an>s.tvm)h+='<li class="w">Au-dessus du seuil majoré de TVA ('+eur(s.tvm)+') : la TVA est due dès le dépassement.</li>';
+ else if(an>s.tva)h+='<li class="i">Au-dessus du seuil de franchise de TVA ('+eur(s.tva)+') : vous facturerez la TVA l’année suivante.</li>';
+ else h+='<li>Sous le seuil de franchise de TVA ('+eur(s.tva)+') : pas de TVA à facturer.</li>';
+ $("msgs").innerHTML=h;
+ var rows="";
+ for(var x in A){var q=taux(x,a,v),tt=q.cot+q.cfp+q.imp,nn=ca*(1-tt);
+  rows+='<tr'+(x===k?' class="cur"':'')+'><td>'+A[x].n+'</td><td class="n">'+eur(ca*q.cot)+'</td><td class="n">'+eur(nn)+'</td><td class="n">'+pc((1-tt)*100)+'</td></tr>'}
+ $("cmp").innerHTML=rows;
+ window._txt="Chiffre d’affaires "+eur(ca)+" : cotisations "+eur(cot)+", formation "+eur(cfp)+(v?", impôt "+eur(imp):"")+". Net : "+eur(net)+".";
+}
+(function(){var h="";for(var x in A)h+="<tr><td>"+A[x].n+"</td><td class='n'>"+pc(A[x].cot)+"</td><td class='n'>"+pc(A[x].cfp)+"</td><td class='n'>"+pc(A[x].vl)+"</td></tr>";$("tx").innerHTML=h})();
+["mont","per","act","acre","vl"].forEach(function(i){$(i).addEventListener("input",calc);$(i).addEventListener("change",calc)});
+function setMode(m){mode=m;$("m-ca").setAttribute("aria-pressed",m==="ca");$("m-net").setAttribute("aria-pressed",m==="net");
+ $("l-mont").textContent=m==="ca"?"Chiffre d’affaires (€)":"Net souhaité (€)";calc()}
+$("m-ca").onclick=function(){setMode("ca")};$("m-net").onclick=function(){setMode("net")};
+$("print").onclick=function(){window.print()};
+$("copy").onclick=function(){var b=$("copy");try{navigator.clipboard.writeText(window._txt).then(function(){b.textContent="Copié";setTimeout(function(){b.textContent="Copier le résultat"},1500)})}catch(e){b.textContent="Copie impossible"}};
+calc();
+</script>
+</body>
+</html>
