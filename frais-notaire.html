@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calcul des frais de notaire 2026 : achat ancien ou neuf | CalculNet</title>
+<meta name="description" content="Estimez gratuitement vos frais de notaire en 2026 pour un achat dans l’ancien ou le neuf : droits de mutation, émoluments du notaire, TVA et débours.">
+<meta name="theme-color" content="#0F1F3D">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Combien coûtent les frais de notaire ?", "acceptedAnswer": {"@type": "Answer", "text": "En 2026, comptez environ 7 à 8 % du prix dans l’ancien et 2 à 3 % dans le neuf."}}, {"@type": "Question", "name": "Le notaire touche-t-il tous ces frais ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. La plus grande part correspond à des taxes reversées à l’État et aux collectivités. La rémunération du notaire est une petite partie du total."}}, {"@type": "Question", "name": "Peut-on négocier les frais de notaire ?", "acceptedAnswer": {"@type": "Answer", "text": "Les droits de mutation sont fixés par la loi et ne se négocient pas. Votre notaire peut vous détailler chaque ligne."}}]}</script>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="index.html">Calcul<b>Net</b></a><nav><a href="index.html">Tous les outils</a><a href="#calcul">Calculateur</a><a href="#faq">Questions</a></nav></div></header>
+<div class="hero"><div class="wrap"><h1>Frais de notaire : estimez le coût de votre achat immobilier</h1><p>Entrez le prix du bien : vous obtenez le détail des droits de mutation, des émoluments et du coût total.</p><ul class="chips"><li>100 % gratuit</li><li>Sans inscription</li><li>Aucune donnée enregistrée</li></ul></div></div>
+<main class="wrap">
+<div class="tool" id="calcul"><div class="inputs"><div class="row"><label for="mode">Type de bien</label><select id="mode"><option value="ancien" selected>Logement ancien</option><option value="neuf">Logement neuf (VEFA)</option></select></div><div class="row"><label for="prix">Prix du bien (€)</label><input id="prix" type="number" inputmode="decimal" min="0" step="any" value="250000"></div><div class="row" data-if="ancien"><label for="tx">Droits de mutation (ancien)</label><select id="tx"><option value="5.8" selected>5,80 % (cas le plus courant)</option><option value="6.32">6,32 % (département ayant relevé son taux)</option><option value="5.09">5,09 % (taux normal, quelques départements)</option></select></div><div class="row"><label for="deb">Frais et débours estimés (€)</label><input id="deb" type="number" inputmode="decimal" min="0" step="any" value="1000"></div></div>
+<div class="out" aria-live="polite"><div class="big"><small id="b-l"></small><strong id="b-v">0</strong><small id="b-s"></small></div><dl id="rows"></dl><ul class="msgs" id="msgs"></ul><div class="btns"><button class="btn" id="copy" type="button">Copier le résultat</button><button class="btn" id="print" type="button">Imprimer</button></div></div></div>
+<div class="slot">Espace publicitaire : collez ici le code Google AdSense une fois le compte validé</div>
+<section><h2>Comment sont calculés les frais de notaire</h2><p>Les frais de notaire regroupent les droits de mutation, qui sont des taxes reversées à l’État et aux collectivités, la rémunération du notaire (les émoluments, fixés par un barème dégressif, plus 20 % de TVA), la contribution de sécurité immobilière de 0,10 % et des débours. Ils représentent en moyenne 7 à 8 % du prix dans l’ancien et 2 à 3 % dans le neuf.</p></section>
+<section id="faq"><h2>Questions fréquentes</h2><details><summary>Combien coûtent les frais de notaire ?</summary><p>En 2026, comptez environ 7 à 8 % du prix dans l’ancien et 2 à 3 % dans le neuf.</p></details><details><summary>Le notaire touche-t-il tous ces frais ?</summary><p>Non. La plus grande part correspond à des taxes reversées à l’État et aux collectivités. La rémunération du notaire est une petite partie du total.</p></details><details><summary>Peut-on négocier les frais de notaire ?</summary><p>Les droits de mutation sont fixés par la loi et ne se négocient pas. Votre notaire peut vous détailler chaque ligne.</p></details></section>
+</main>
+<footer><div class="wrap"><p><a href="mentions-legales.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a> · <a href="a-propos.html">À propos</a></p><p><b>CalculNet</b> propose des outils indicatifs, sans valeur de conseil fiscal, juridique, médical ou comptable.</p><p>Hébergement : Cloudflare Pages. Les calculs se font dans votre navigateur : aucune donnée saisie n’est envoyée ni enregistrée.</p></div></footer>
+<script>
+var $=function(i){return document.getElementById(i)};
+var eur2=function(n){return n.toLocaleString("fr-FR",{style:"currency",currency:"EUR"})};
+var nf=function(n,d){return n.toLocaleString("fr-FR",{maximumFractionDigits:d===undefined?2:d})};
+function V(i){var e=$(i);return e.type==="number"?(parseFloat(e.value)||0):e.value}
+function D(s){var p=String(s).split("-");return p.length===3?Date.UTC(+p[0],+p[1]-1,+p[2]):NaN}
+function run(){
+ var m=$("mode")?$("mode").value:"";
+ document.querySelectorAll("[data-if]").forEach(function(e){e.style.display=e.dataset.if.split(",").indexOf(m)>-1?"":"none"});
+ document.querySelectorAll("[data-lab]").forEach(function(e){var o=JSON.parse(e.dataset.lab);if(o[m])e.textContent=o[m]});
+ var r=TOOL();
+ $("b-l").textContent=r.l;$("b-v").textContent=r.v;$("b-s").textContent=r.s||"";
+ $("rows").innerHTML=r.rows.map(function(x){return'<div class="l"><dt>'+x[0]+'</dt><dd>'+x[1]+'</dd></div>'}).join("");
+ $("msgs").innerHTML=(r.msgs||[]).map(function(x){return'<li class="'+x[0]+'">'+x[1]+'</li>'}).join("");
+ window._t=r.l+" : "+r.v+(r.s?" ("+r.s+")":"")+". "+r.rows.map(function(x){return x[0]+" : "+x[1]}).join(", ")+".";
+}
+document.querySelectorAll("input,select").forEach(function(e){e.addEventListener("input",run);e.addEventListener("change",run)});
+$("print").onclick=function(){window.print()};
+$("copy").onclick=function(){var b=$("copy");try{navigator.clipboard.writeText(window._t).then(function(){b.textContent="Copié";setTimeout(function(){b.textContent="Copier le résultat"},1500)})}catch(e){b.textContent="Copie impossible"}};
+if($("d2")&&!$("d2").value)$("d2").value=new Date().toISOString().slice(0,10);
+run();
+function TOOL(){var p=V("prix"),neuf=$("mode").value==="neuf",tx=neuf?0.715:parseFloat(V("tx")),tr=[[6500,.0387],[17000,.01596],[60000,.01064],[Infinity,.00799]],em=0,pv=0;tr.forEach(function(x){em+=Math.max(0,Math.min(p,x[0])-pv)*x[1];pv=x[0]});var dm=p*tx/100,tva=em*.2,csi=p*.001,deb=V("deb"),tot=dm+em+tva+csi+deb;return{l:"Frais de notaire estimés",v:eur2(tot),s:p>0?nf(tot/p*100,1)+" % du prix":"",rows:[["Droits de mutation ("+nf(tx,2)+" %)",eur2(dm)],["Émoluments du notaire (HT)",eur2(em)],["TVA sur émoluments (20 %)",eur2(tva)],["Contribution de sécurité immobilière",eur2(csi)],["Frais et débours",eur2(deb)],["Prix + frais",eur2(p+tot)]],msgs:[["i","Estimation : le taux des droits de mutation dépend de votre département et les débours varient selon le dossier. Votre notaire vous remettra un décompte précis."]]};}
+</script>
+</body>
+</html>
