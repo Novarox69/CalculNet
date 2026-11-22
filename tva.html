@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calcul de TVA : HT en TTC et TTC en HT | CalculNet</title>
+<meta name="description" content="Calculez gratuitement la TVA : convertissez un prix HT en TTC ou un prix TTC en HT avec les taux de 20 %, 10 %, 5,5 % et 2,1 %.">
+<meta name="theme-color" content="#0F1F3D">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Comment calculer le prix HT à partir du TTC ?", "acceptedAnswer": {"@type": "Answer", "text": "On divise le prix TTC par 1 plus le taux de TVA. Pour 120 € TTC à 20 %, on divise par 1,20 : le prix HT est de 100 €."}}, {"@type": "Question", "name": "Quels sont les taux de TVA en France ?", "acceptedAnswer": {"@type": "Answer", "text": "Le taux normal est de 20 %. Les taux réduits sont de 10 %, 5,5 % et 2,1 % selon les produits et services."}}, {"@type": "Question", "name": "Est-ce valable pour un auto-entrepreneur ?", "acceptedAnswer": {"@type": "Answer", "text": "Un micro-entrepreneur sous le seuil de franchise de TVA ne facture pas la TVA. Au-delà, il doit l’ajouter à ses factures."}}]}</script>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="index.html">Calcul<b>Net</b></a><nav><a href="index.html">Tous les outils</a><a href="#calcul">Calculateur</a><a href="#faq">Questions</a></nav></div></header>
+<div class="hero"><div class="wrap"><h1>Calcul de TVA : passez du HT au TTC, et inversement</h1><p>Entrez un montant, choisissez le taux : vous obtenez le HT, la TVA et le TTC.</p><ul class="chips"><li>100 % gratuit</li><li>Sans inscription</li><li>Aucune donnée enregistrée</li></ul></div></div>
+<main class="wrap">
+<div class="tool" id="calcul"><div class="inputs"><div class="row"><label for="mode">Sens du calcul</label><select id="mode"><option value="ht" selected>Du HT vers le TTC</option><option value="ttc">Du TTC vers le HT</option></select></div><div class="row"><label for="a" data-lab="{&quot;ht&quot;: &quot;Montant HT (€)&quot;, &quot;ttc&quot;: &quot;Montant TTC (€)&quot;}">Montant (€)</label><input id="a" type="number" inputmode="decimal" min="0" step="any" value="100"></div><div class="row"><label for="taux">Taux de TVA</label><select id="taux"><option value="20" selected>20 % (taux normal)</option><option value="10">10 % (taux intermédiaire)</option><option value="5.5">5,5 % (taux réduit)</option><option value="2.1">2,1 % (taux particulier)</option><option value="0">0 %</option></select></div></div>
+<div class="out" aria-live="polite"><div class="big"><small id="b-l"></small><strong id="b-v">0</strong><small id="b-s"></small></div><dl id="rows"></dl><ul class="msgs" id="msgs"></ul><div class="btns"><button class="btn" id="copy" type="button">Copier le résultat</button><button class="btn" id="print" type="button">Imprimer</button></div></div></div>
+<div class="slot">Espace publicitaire : collez ici le code Google AdSense une fois le compte validé</div>
+<section><h2>Comment calculer la TVA</h2><p>Pour passer du HT au TTC, on multiplie le prix hors taxes par 1 plus le taux de TVA (par exemple 1,20 pour 20 %). Pour retrouver le HT à partir du TTC, on divise par ce même nombre. En France, le taux normal est de 20 %, avec des taux réduits de 10 %, 5,5 % et 2,1 % selon les produits.</p></section>
+<section id="faq"><h2>Questions fréquentes</h2><details><summary>Comment calculer le prix HT à partir du TTC ?</summary><p>On divise le prix TTC par 1 plus le taux de TVA. Pour 120 € TTC à 20 %, on divise par 1,20 : le prix HT est de 100 €.</p></details><details><summary>Quels sont les taux de TVA en France ?</summary><p>Le taux normal est de 20 %. Les taux réduits sont de 10 %, 5,5 % et 2,1 % selon les produits et services.</p></details><details><summary>Est-ce valable pour un auto-entrepreneur ?</summary><p>Un micro-entrepreneur sous le seuil de franchise de TVA ne facture pas la TVA. Au-delà, il doit l’ajouter à ses factures.</p></details></section>
+</main>
+<footer><div class="wrap"><p><b>CalculNet</b> propose des outils indicatifs, sans valeur de conseil fiscal, juridique, médical ou comptable.</p><p>Mentions légales : éditeur [votre nom ou pseudo], contact [votre e-mail]. Hébergement : Cloudflare Pages.</p><p>Confidentialité : les calculs se font dans votre navigateur et aucune donnée saisie n’est envoyée ni enregistrée. Des cookies publicitaires pourront être utilisés si de la publicité est affichée.</p></div></footer>
+<script>
+var $=function(i){return document.getElementById(i)};
+var eur2=function(n){return n.toLocaleString("fr-FR",{style:"currency",currency:"EUR"})};
+var nf=function(n,d){return n.toLocaleString("fr-FR",{maximumFractionDigits:d===undefined?2:d})};
+function V(i){var e=$(i);return e.type==="number"?(parseFloat(e.value)||0):e.value}
+function D(s){var p=String(s).split("-");return p.length===3?Date.UTC(+p[0],+p[1]-1,+p[2]):NaN}
+function run(){
+ var m=$("mode")?$("mode").value:"";
+ document.querySelectorAll("[data-if]").forEach(function(e){e.style.display=e.dataset.if.split(",").indexOf(m)>-1?"":"none"});
+ document.querySelectorAll("[data-lab]").forEach(function(e){var o=JSON.parse(e.dataset.lab);if(o[m])e.textContent=o[m]});
+ var r=TOOL();
+ $("b-l").textContent=r.l;$("b-v").textContent=r.v;$("b-s").textContent=r.s||"";
+ $("rows").innerHTML=r.rows.map(function(x){return'<div class="l"><dt>'+x[0]+'</dt><dd>'+x[1]+'</dd></div>'}).join("");
+ $("msgs").innerHTML=(r.msgs||[]).map(function(x){return'<li class="'+x[0]+'">'+x[1]+'</li>'}).join("");
+ window._t=r.l+" : "+r.v+(r.s?" ("+r.s+")":"")+". "+r.rows.map(function(x){return x[0]+" : "+x[1]}).join(", ")+".";
+}
+document.querySelectorAll("input,select").forEach(function(e){e.addEventListener("input",run);e.addEventListener("change",run)});
+$("print").onclick=function(){window.print()};
+$("copy").onclick=function(){var b=$("copy");try{navigator.clipboard.writeText(window._t).then(function(){b.textContent="Copié";setTimeout(function(){b.textContent="Copier le résultat"},1500)})}catch(e){b.textContent="Copie impossible"}};
+if($("d2")&&!$("d2").value)$("d2").value=new Date().toISOString().slice(0,10);
+run();
+function TOOL(){var m=$("mode").value,a=V("a"),t=V("taux")/100,ht,ttc;if(m==="ht"){ht=a;ttc=a*(1+t)}else{ttc=a;ht=a/(1+t)}return{l:m==="ht"?"Montant TTC":"Montant HT",v:eur2(m==="ht"?ttc:ht),rows:[["Montant HT",eur2(ht)],["TVA ("+nf(t*100,1)+" %)",eur2(ttc-ht)],["Montant TTC",eur2(ttc)]]};}
+</script>
+</body>
+</html>
