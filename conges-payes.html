@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calcul des congés payés : jours acquis et indemnité | CalculNet</title>
+<meta name="description" content="Calculez vos jours de congés payés acquis (ouvrables ou ouvrés) et votre indemnité de congés payés : règle du dixième et maintien de salaire.">
+<meta name="theme-color" content="#0F1F3D">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Combien de jours de congés payés par an ?", "acceptedAnswer": {"@type": "Answer", "text": "Cinq semaines : 30 jours ouvrables ou 25 jours ouvrés pour une année complète de travail."}}, {"@type": "Question", "name": "Quelle différence entre jours ouvrables et ouvrés ?", "acceptedAnswer": {"@type": "Answer", "text": "Les jours ouvrables vont du lundi au samedi, les jours ouvrés correspondent aux jours réellement travaillés dans l’entreprise, en général du lundi au vendredi."}}, {"@type": "Question", "name": "Quelle est la période de référence ?", "acceptedAnswer": {"@type": "Answer", "text": "Elle va du 1er juin au 31 mai de l’année suivante, sauf si votre convention collective prévoit une autre période."}}]}</script>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="index.html">Calcul<b>Net</b></a><nav><a href="index.html">Tous les outils</a><a href="#calcul">Calculateur</a><a href="#faq">Questions</a></nav></div></header>
+<div class="hero"><div class="wrap"><h1>Calcul des congés payés</h1><p>Jours acquis et indemnité estimée, selon la règle la plus avantageuse.</p><ul class="chips"><li>100 % gratuit</li><li>Sans inscription</li><li>Aucune donnée enregistrée</li></ul></div></div>
+<main class="wrap">
+<div class="tool" id="calcul"><div class="inputs"><div class="row"><label for="mode">Type de jours</label><select id="mode"><option value="ouvrables" selected>Jours ouvrables (2,5 par mois)</option><option value="ouvres">Jours ouvrés (2,08 par mois)</option></select></div><div class="row"><label for="s">Salaire brut mensuel (€)</label><input id="s" type="number" inputmode="decimal" min="0" step="any" value="2000"></div><div class="row"><label for="mt">Mois travaillés sur la période de référence</label><input id="mt" type="number" inputmode="decimal" min="0" step="0.5" value="12"></div><div class="row"><label for="jp">Jours de congés pris</label><input id="jp" type="number" inputmode="decimal" min="0" step="1" value="10"></div></div>
+<div class="out" aria-live="polite"><div class="big"><small id="b-l"></small><strong id="b-v">0</strong><small id="b-s"></small></div><dl id="rows"></dl><ul class="msgs" id="msgs"></ul><div class="btns"><button class="btn" id="copy" type="button">Copier le résultat</button><button class="btn" id="print" type="button">Imprimer</button></div></div></div>
+<div class="slot">Espace publicitaire : collez ici le code Google AdSense une fois le compte validé</div>
+<section><h2>Comment sont calculés les congés payés</h2><p>Un salarié acquiert 2,5 jours ouvrables de congés par mois travaillé, soit 30 jours par an, ou 2,08 jours ouvrés par mois, soit 25 jours par an. L’indemnité est la plus favorable entre la règle du dixième (10 % de la rémunération brute de la période de référence) et le maintien de salaire.</p></section>
+<section id="faq"><h2>Questions fréquentes</h2><details><summary>Combien de jours de congés payés par an ?</summary><p>Cinq semaines : 30 jours ouvrables ou 25 jours ouvrés pour une année complète de travail.</p></details><details><summary>Quelle différence entre jours ouvrables et ouvrés ?</summary><p>Les jours ouvrables vont du lundi au samedi, les jours ouvrés correspondent aux jours réellement travaillés dans l’entreprise, en général du lundi au vendredi.</p></details><details><summary>Quelle est la période de référence ?</summary><p>Elle va du 1er juin au 31 mai de l’année suivante, sauf si votre convention collective prévoit une autre période.</p></details></section>
+</main>
+<footer><div class="wrap"><p><b>CalculNet</b> propose des outils indicatifs, sans valeur de conseil fiscal, juridique, médical ou comptable.</p><p>Mentions légales : éditeur [votre nom ou pseudo], contact [votre e-mail]. Hébergement : Cloudflare Pages.</p><p>Confidentialité : les calculs se font dans votre navigateur et aucune donnée saisie n’est envoyée ni enregistrée. Des cookies publicitaires pourront être utilisés si de la publicité est affichée.</p></div></footer>
+<script>
+var $=function(i){return document.getElementById(i)};
+var eur2=function(n){return n.toLocaleString("fr-FR",{style:"currency",currency:"EUR"})};
+var nf=function(n,d){return n.toLocaleString("fr-FR",{maximumFractionDigits:d===undefined?2:d})};
+function V(i){var e=$(i);return e.type==="number"?(parseFloat(e.value)||0):e.value}
+function D(s){var p=String(s).split("-");return p.length===3?Date.UTC(+p[0],+p[1]-1,+p[2]):NaN}
+function run(){
+ var m=$("mode")?$("mode").value:"";
+ document.querySelectorAll("[data-if]").forEach(function(e){e.style.display=e.dataset.if.split(",").indexOf(m)>-1?"":"none"});
+ document.querySelectorAll("[data-lab]").forEach(function(e){var o=JSON.parse(e.dataset.lab);if(o[m])e.textContent=o[m]});
+ var r=TOOL();
+ $("b-l").textContent=r.l;$("b-v").textContent=r.v;$("b-s").textContent=r.s||"";
+ $("rows").innerHTML=r.rows.map(function(x){return'<div class="l"><dt>'+x[0]+'</dt><dd>'+x[1]+'</dd></div>'}).join("");
+ $("msgs").innerHTML=(r.msgs||[]).map(function(x){return'<li class="'+x[0]+'">'+x[1]+'</li>'}).join("");
+ window._t=r.l+" : "+r.v+(r.s?" ("+r.s+")":"")+". "+r.rows.map(function(x){return x[0]+" : "+x[1]}).join(", ")+".";
+}
+document.querySelectorAll("input,select").forEach(function(e){e.addEventListener("input",run);e.addEventListener("change",run)});
+$("print").onclick=function(){window.print()};
+$("copy").onclick=function(){var b=$("copy");try{navigator.clipboard.writeText(window._t).then(function(){b.textContent="Copié";setTimeout(function(){b.textContent="Copier le résultat"},1500)})}catch(e){b.textContent="Copie impossible"}};
+if($("d2")&&!$("d2").value)$("d2").value=new Date().toISOString().slice(0,10);
+run();
+function TOOL(){var o=$("mode").value==="ouvrables",s=V("s"),mt=Math.min(12,V("mt")),jp=V("jp"),ac=Math.min(o?30:25,Math.ceil((o?2.5:25/12)*mt-1e-9)),tot=s*mt,dix=tot/10,jd=ac?dix/ac:0,jm=s/(o?26:21.67),jr=Math.max(jd,jm);return{l:"Jours acquis",v:nf(ac,0)+" jours",s:o?"ouvrables":"ouvrés",rows:[["Total brut sur la période",eur2(tot)],["Dixième de la rémunération",eur2(dix)],["Valeur d’un jour (règle du dixième)",eur2(jd)],["Valeur d’un jour (maintien de salaire)",eur2(jm)],["Indemnité pour "+nf(jp,0)+" jours pris",eur2(jr*jp)]],msgs:[["i","L’indemnité retenue est la plus avantageuse des deux méthodes. Estimation hors primes : votre bulletin de paie reste la référence."]]};}
+</script>
+</body>
+</html>
