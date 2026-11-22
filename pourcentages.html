@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculateur de pourcentages : remise, augmentation, évolution | CalculNet</title>
+<meta name="description" content="Calculez facilement un pourcentage : X % d’un nombre, remise, augmentation, baisse ou évolution entre deux valeurs. Gratuit et instantané.">
+<meta name="theme-color" content="#0F1F3D">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Comment calculer une remise de 20 % ?", "acceptedAnswer": {"@type": "Answer", "text": "On multiplie le prix par 0,80. Pour un article à 50 €, le prix remisé est de 40 €."}}, {"@type": "Question", "name": "Comment calculer une augmentation de 10 % ?", "acceptedAnswer": {"@type": "Answer", "text": "On multiplie le montant par 1,10. Un loyer de 600 € devient 660 €."}}, {"@type": "Question", "name": "Comment calculer un pourcentage d’évolution ?", "acceptedAnswer": {"@type": "Answer", "text": "On calcule (valeur d’arrivée moins valeur de départ) divisé par la valeur de départ, puis on multiplie par 100."}}]}</script>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="index.html">Calcul<b>Net</b></a><nav><a href="index.html">Tous les outils</a><a href="#calcul">Calculateur</a><a href="#faq">Questions</a></nav></div></header>
+<div class="hero"><div class="wrap"><h1>Calculateur de pourcentages</h1><p>Remises, augmentations, évolutions : choisissez ce que vous cherchez et obtenez le résultat.</p><ul class="chips"><li>100 % gratuit</li><li>Sans inscription</li><li>Aucune donnée enregistrée</li></ul></div></div>
+<main class="wrap">
+<div class="tool" id="calcul"><div class="inputs"><div class="row"><label for="mode">Que voulez-vous calculer ?</label><select id="mode"><option value="de" selected>X % d’un nombre</option><option value="est">X est quel % de Y</option><option value="var">Évolution entre deux valeurs</option><option value="plus">Augmenter un nombre de X %</option><option value="moins">Diminuer un nombre de X % (remise)</option></select></div><div class="row"><label for="a" data-lab="{&quot;de&quot;: &quot;Pourcentage (%)&quot;, &quot;est&quot;: &quot;Valeur partielle&quot;, &quot;var&quot;: &quot;Valeur de départ&quot;, &quot;plus&quot;: &quot;Pourcentage d’augmentation (%)&quot;, &quot;moins&quot;: &quot;Pourcentage de remise (%)&quot;}">Valeur A</label><input id="a" type="number" inputmode="decimal" min="-1000000000" step="any" value="20"></div><div class="row"><label for="b" data-lab="{&quot;de&quot;: &quot;Valeur de référence&quot;, &quot;est&quot;: &quot;Valeur totale&quot;, &quot;var&quot;: &quot;Valeur d’arrivée&quot;, &quot;plus&quot;: &quot;Valeur de départ&quot;, &quot;moins&quot;: &quot;Valeur de départ&quot;}">Valeur B</label><input id="b" type="number" inputmode="decimal" min="-1000000000" step="any" value="150"></div></div>
+<div class="out" aria-live="polite"><div class="big"><small id="b-l"></small><strong id="b-v">0</strong><small id="b-s"></small></div><dl id="rows"></dl><ul class="msgs" id="msgs"></ul><div class="btns"><button class="btn" id="copy" type="button">Copier le résultat</button><button class="btn" id="print" type="button">Imprimer</button></div></div></div>
+<div class="slot">Espace publicitaire : collez ici le code Google AdSense une fois le compte validé</div>
+<section><h2>Comment calculer un pourcentage</h2><p>Pour prendre X % d’un nombre, on le multiplie par X puis on divise par 100. Pour savoir quel pourcentage représente une valeur par rapport à un total, on divise la valeur par le total puis on multiplie par 100. Pour une évolution, on divise l’écart entre la valeur d’arrivée et la valeur de départ par la valeur de départ.</p></section>
+<section id="faq"><h2>Questions fréquentes</h2><details><summary>Comment calculer une remise de 20 % ?</summary><p>On multiplie le prix par 0,80. Pour un article à 50 €, le prix remisé est de 40 €.</p></details><details><summary>Comment calculer une augmentation de 10 % ?</summary><p>On multiplie le montant par 1,10. Un loyer de 600 € devient 660 €.</p></details><details><summary>Comment calculer un pourcentage d’évolution ?</summary><p>On calcule (valeur d’arrivée moins valeur de départ) divisé par la valeur de départ, puis on multiplie par 100.</p></details></section>
+</main>
+<footer><div class="wrap"><p><b>CalculNet</b> propose des outils indicatifs, sans valeur de conseil fiscal, juridique, médical ou comptable.</p><p>Mentions légales : éditeur [votre nom ou pseudo], contact [votre e-mail]. Hébergement : Cloudflare Pages.</p><p>Confidentialité : les calculs se font dans votre navigateur et aucune donnée saisie n’est envoyée ni enregistrée. Des cookies publicitaires pourront être utilisés si de la publicité est affichée.</p></div></footer>
+<script>
+var $=function(i){return document.getElementById(i)};
+var eur2=function(n){return n.toLocaleString("fr-FR",{style:"currency",currency:"EUR"})};
+var nf=function(n,d){return n.toLocaleString("fr-FR",{maximumFractionDigits:d===undefined?2:d})};
+function V(i){var e=$(i);return e.type==="number"?(parseFloat(e.value)||0):e.value}
+function D(s){var p=String(s).split("-");return p.length===3?Date.UTC(+p[0],+p[1]-1,+p[2]):NaN}
+function run(){
+ var m=$("mode")?$("mode").value:"";
+ document.querySelectorAll("[data-if]").forEach(function(e){e.style.display=e.dataset.if.split(",").indexOf(m)>-1?"":"none"});
+ document.querySelectorAll("[data-lab]").forEach(function(e){var o=JSON.parse(e.dataset.lab);if(o[m])e.textContent=o[m]});
+ var r=TOOL();
+ $("b-l").textContent=r.l;$("b-v").textContent=r.v;$("b-s").textContent=r.s||"";
+ $("rows").innerHTML=r.rows.map(function(x){return'<div class="l"><dt>'+x[0]+'</dt><dd>'+x[1]+'</dd></div>'}).join("");
+ $("msgs").innerHTML=(r.msgs||[]).map(function(x){return'<li class="'+x[0]+'">'+x[1]+'</li>'}).join("");
+ window._t=r.l+" : "+r.v+(r.s?" ("+r.s+")":"")+". "+r.rows.map(function(x){return x[0]+" : "+x[1]}).join(", ")+".";
+}
+document.querySelectorAll("input,select").forEach(function(e){e.addEventListener("input",run);e.addEventListener("change",run)});
+$("print").onclick=function(){window.print()};
+$("copy").onclick=function(){var b=$("copy");try{navigator.clipboard.writeText(window._t).then(function(){b.textContent="Copié";setTimeout(function(){b.textContent="Copier le résultat"},1500)})}catch(e){b.textContent="Copie impossible"}};
+if($("d2")&&!$("d2").value)$("d2").value=new Date().toISOString().slice(0,10);
+run();
+function TOOL(){var m=$("mode").value,a=V("a"),b=V("b"),r,l,v,rows=[],msgs=[];if(m==="de"){r=a/100*b;l="Résultat";v=nf(r);rows=[[nf(a)+" % de "+nf(b),nf(r)]]}else if(m==="est"){if(!b){return{l:"Résultat",v:"-",rows:[],msgs:[["w","La valeur totale ne peut pas être zéro."]]}}r=a/b*100;l="Pourcentage";v=nf(r)+" %";rows=[[nf(a)+" sur "+nf(b),nf(r)+" %"]]}else if(m==="var"){if(!a){return{l:"Évolution",v:"-",rows:[],msgs:[["w","La valeur de départ ne peut pas être zéro."]]}}r=(b-a)/a*100;l=r>=0?"Augmentation":"Baisse";v=nf(Math.abs(r))+" %";rows=[["Écart",nf(b-a)],["Évolution",(r>0?"+":"")+nf(r)+" %"]]}else if(m==="plus"){r=b*(1+a/100);l="Nouveau total";v=nf(r);rows=[["Ajout",nf(r-b)],["Valeur de départ",nf(b)]]}else{r=b*(1-a/100);l="Nouveau total";v=nf(r);rows=[["Réduction",nf(b-r)],["Valeur de départ",nf(b)]]}return{l:l,v:v,rows:rows,msgs:msgs};}
+</script>
+</body>
+</html>
