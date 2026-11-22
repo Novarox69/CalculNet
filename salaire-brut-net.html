@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculateur salaire brut en net 2026 (et net en brut) | CalculNet</title>
+<meta name="description" content="Convertissez gratuitement un salaire brut en net (ou l’inverse) : cadre, non-cadre, fonction publique, net après prélèvement à la source et taux horaire.">
+<meta name="theme-color" content="#0F1F3D">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Comment passer du salaire brut au net ?","acceptedAnswer":{"@type":"Answer","text":"On retire les cotisations salariales : environ 22 % du brut pour un non-cadre, 25 % pour un cadre et 15 % dans la fonction publique."}},
+{"@type":"Question","name":"Quelle est la différence entre net avant et après impôt ?","acceptedAnswer":{"@type":"Answer","text":"Le net avant impôt est le salaire après cotisations. Le net après impôt est ce que vous recevez réellement, une fois le prélèvement à la source retiré."}}]}</script>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="index.html">Calcul<b>Net</b></a>
+<nav><a href="index.html">Tous les outils</a><a href="#calcul">Calculateur</a><a href="#faq">Questions</a></nav></div></header>
+<div class="hero"><div class="wrap">
+<h1>Salaire brut en net : combien touchez-vous vraiment ?</h1>
+<p>Passez du brut au net, ou du net au brut, avec le taux horaire et le prélèvement à la source.</p>
+<ul class="chips"><li>Cadre et non-cadre</li><li>Fonction publique</li><li>100 % gratuit</li><li>Aucune donnée enregistrée</li></ul>
+</div></div>
+<main class="wrap">
+<div class="tool" id="calcul">
+<div class="inputs">
+<div class="seg" role="group" aria-label="Sens du calcul">
+<button type="button" id="m-b" aria-pressed="true">Brut vers net</button>
+<button type="button" id="m-n" aria-pressed="false">Net vers brut</button></div>
+<div class="two row">
+<div><label for="mont" id="l-mont">Salaire brut (€)</label><input id="mont" type="number" inputmode="decimal" min="0" step="any" value="2500"></div>
+<div><label for="per">Période</label><select id="per"><option value="1">Par mois</option><option value="12">Par an</option></select></div></div>
+<div class="row"><label for="st">Statut</label>
+<select id="st"><option value="0.22">Salarié non-cadre (environ 22 %)</option><option value="0.25">Cadre (environ 25 %)</option><option value="0.15">Fonction publique (environ 15 %)</option></select></div>
+<div class="two row">
+<div><label for="pas">Prélèvement à la source (%)</label><input id="pas" type="number" inputmode="decimal" min="0" max="45" step="any" value="0"></div>
+<div><label for="h">Heures par semaine</label><input id="h" type="number" inputmode="decimal" min="1" max="60" step="any" value="35"></div></div>
+</div>
+<div class="out" aria-live="polite">
+<div class="big"><small id="b-l">Salaire net avant impôt</small><strong id="b-v">0 €</strong><small id="b-s">par mois</small></div>
+<div class="bar" id="bar"></div>
+<div class="leg"><span style="--c:var(--ok)">Net</span><span style="--c:var(--accent)">Cotisations</span></div>
+<dl>
+<div class="l"><dt>Salaire brut mensuel</dt><dd id="r-b"></dd></div>
+<div class="l"><dt>Cotisations salariales</dt><dd id="r-c"></dd></div>
+<div class="l tot"><dt>Net avant impôt</dt><dd id="r-n"></dd></div>
+<div class="l"><dt>Prélèvement à la source</dt><dd id="r-p"></dd></div>
+<div class="l tot"><dt>Net après impôt</dt><dd id="r-na"></dd></div>
+<div class="l"><dt>Net annuel avant impôt</dt><dd id="r-an"></dd></div>
+<div class="l"><dt>Taux horaire brut</dt><dd id="r-hb"></dd></div>
+<div class="l"><dt>Taux horaire net</dt><dd id="r-hn"></dd></div></dl>
+<ul class="msgs" id="msgs"></ul>
+<div class="btns"><button class="btn" id="copy" type="button">Copier le résultat</button><button class="btn" id="print" type="button">Imprimer</button></div>
+</div></div>
+<div class="slot">Espace publicitaire : collez ici le code Google AdSense une fois le compte validé</div>
+<section><h2>Comment passer du brut au net</h2>
+<p>Le salaire brut est ce qui figure sur le contrat. On en retire les cotisations salariales (retraite, assurance maladie, chômage, CSG et CRDS) pour obtenir le net avant impôt. En moyenne, cela représente environ 22 % du brut pour un non-cadre, 25 % pour un cadre et 15 % dans la fonction publique. Le prélèvement à la source est ensuite retiré pour obtenir ce qui arrive sur votre compte.</p>
+<div class="scroll"><table><thead><tr><th>Statut</th><th>Cotisations</th><th>Pour 2 500 € bruts</th></tr></thead><tbody>
+<tr><td>Non-cadre</td><td class="n">22 %</td><td class="n">1 950 € nets</td></tr>
+<tr><td>Cadre</td><td class="n">25 %</td><td class="n">1 875 € nets</td></tr>
+<tr><td>Fonction publique</td><td class="n">15 %</td><td class="n">2 125 € nets</td></tr></tbody></table></div>
+<p style="font-size:.88rem;color:var(--soft)">Taux moyens indicatifs : votre bulletin de paie reste la référence.</p></section>
+<section id="faq"><h2>Questions fréquentes</h2>
+<details><summary>Quelle est la différence entre net avant et après impôt ?</summary><p>Le net avant impôt est le salaire après cotisations. Le net après impôt est ce que vous recevez réellement, une fois le prélèvement à la source retiré. Votre taux figure sur votre bulletin de paie.</p></details>
+<details><summary>Pourquoi le résultat diffère-t-il de ma fiche de paie ?</summary><p>Les taux utilisés sont des moyennes. Mutuelle, primes, tickets restaurant ou cotisations propres à votre entreprise font varier le résultat.</p></details>
+<details><summary>Comment obtenir le taux horaire ?</summary><p>Le salaire mensuel est divisé par le nombre d’heures travaillées par mois, soit les heures par semaine multipliées par 52 puis divisées par 12 (151,67 heures pour 35 heures).</p></details></section>
+</main>
+<footer><div class="wrap">
+<p><b>CalculNet</b> propose des outils indicatifs, sans valeur de conseil fiscal, juridique ou comptable.</p>
+<p>Mentions légales : éditeur [votre nom ou pseudo], contact [votre e-mail]. Hébergement : GitHub Pages.</p>
+<p>Confidentialité : les calculs se font dans votre navigateur et aucune donnée saisie n’est envoyée ni enregistrée. Des cookies publicitaires pourront être utilisés si de la publicité est affichée.</p>
+</div></footer>
+<script>
+/* Taux moyens de cotisations salariales : à vérifier chaque année. SMIC horaire brut 2026 : voir service-public.fr */
+var SMIC_H=12.02,mode="b",$=function(i){return document.getElementById(i)};
+var eur=function(n){return n.toLocaleString("fr-FR",{style:"currency",currency:"EUR",maximumFractionDigits:0})};
+var eur2=function(n){return n.toLocaleString("fr-FR",{style:"currency",currency:"EUR"})};
+function calc(){
+ var m=parseFloat($("mont").value)||0,p=+$("per").value,r=+$("st").value,pas=parseFloat($("pas").value)||0,h=parseFloat($("h").value)||35;
+ var base=m/p,brut,net;
+ if(mode==="b"){brut=base;net=brut*(1-r)}else{net=base;brut=net/(1-r)}
+ var cot=brut-net,imp=net*pas/100,na=net-imp,hm=h*52/12;
+ $("b-v").textContent=eur(mode==="b"?net:brut);
+ $("b-l").textContent=mode==="b"?"Salaire net avant impôt":"Salaire brut nécessaire";
+ $("r-b").textContent=eur(brut);$("r-c").textContent="-"+eur(cot);$("r-n").textContent=eur(net);
+ $("r-p").textContent=pas?"-"+eur(imp):"non renseigné";$("r-na").textContent=eur(na);
+ $("r-an").textContent=eur(net*12);$("r-hb").textContent=eur2(brut/hm);$("r-hn").textContent=eur2(net/hm);
+ var w=function(x){return brut>0?(x/brut*100).toFixed(2):0};
+ $("bar").innerHTML='<i style="width:'+w(net)+'%;background:var(--ok)"></i><i style="width:'+w(cot)+'%;background:var(--accent)"></i>';
+ var smic=SMIC_H*hm,li=brut<smic*.999?'<li class="w">Ce brut est inférieur au SMIC pour '+h+' h par semaine (environ '+eur(smic)+' bruts par mois).</li>':'<li>Ce brut est au moins égal au SMIC pour '+h+' h par semaine (environ '+eur(smic)+' bruts par mois).</li>';
+ $("msgs").innerHTML=li;
+ window._t="Brut "+eur(brut)+" par mois : cotisations "+eur(cot)+", net avant impôt "+eur(net)+(pas?", net après impôt "+eur(na):"")+".";
+}
+["mont","per","st","pas","h"].forEach(function(i){$(i).addEventListener("input",calc);$(i).addEventListener("change",calc)});
+function setMode(x){mode=x;$("m-b").setAttribute("aria-pressed",x==="b");$("m-n").setAttribute("aria-pressed",x==="n");$("l-mont").textContent=x==="b"?"Salaire brut (€)":"Salaire net avant impôt (€)";calc()}
+$("m-b").onclick=function(){setMode("b")};$("m-n").onclick=function(){setMode("n")};
+$("print").onclick=function(){window.print()};
+$("copy").onclick=function(){var b=$("copy");try{navigator.clipboard.writeText(window._t).then(function(){b.textContent="Copié";setTimeout(function(){b.textContent="Copier le résultat"},1500)})}catch(e){b.textContent="Copie impossible"}};
+calc();
+</script>
+</body>
+</html>
