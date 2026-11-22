@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulateur de prêt : mensualité, coût du crédit, capacité d’emprunt | CalculNet</title>
+<meta name="description" content="Simulez gratuitement un prêt immobilier ou à la consommation : mensualité avec assurance, coût total, taux d’endettement, capacité d’emprunt et tableau d’amortissement.">
+<meta name="theme-color" content="#0F1F3D">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Comment calculer la mensualité d’un prêt ?","acceptedAnswer":{"@type":"Answer","text":"La mensualité dépend du capital emprunté, du taux d’intérêt et de la durée. On y ajoute l’assurance emprunteur pour obtenir le montant réellement payé chaque mois."}},
+{"@type":"Question","name":"Quel taux d’endettement maximum pour un prêt immobilier ?","acceptedAnswer":{"@type":"Answer","text":"Les banques appliquent en général un taux d’endettement maximum de 35 % des revenus, assurance comprise."}}]}</script>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="index.html">Calcul<b>Net</b></a>
+<nav><a href="index.html">Tous les outils</a><a href="#calcul">Simulateur</a><a href="#amort">Amortissement</a><a href="#faq">Questions</a></nav></div></header>
+<div class="hero"><div class="wrap">
+<h1>Simulateur de prêt : combien allez-vous vraiment payer ?</h1>
+<p>Calculez la mensualité, le coût total du crédit et ce que vous pouvez emprunter selon votre budget.</p>
+<ul class="chips"><li>Assurance incluse</li><li>Capacité d’emprunt</li><li>Tableau d’amortissement</li><li>Aucune donnée enregistrée</li></ul>
+</div></div>
+<main class="wrap">
+<div class="tool" id="calcul">
+<div class="inputs">
+<div class="seg" role="group" aria-label="Mode de calcul">
+<button type="button" id="m-c" aria-pressed="true">Je connais le montant</button>
+<button type="button" id="m-m" aria-pressed="false">Je connais ma mensualité</button></div>
+<div class="row"><label for="mont" id="l-mont">Montant emprunté (€)</label><input id="mont" type="number" inputmode="decimal" min="0" step="any" value="200000"></div>
+<div class="two row">
+<div><label for="taux">Taux annuel (%)</label><input id="taux" type="number" inputmode="decimal" min="0" max="30" step="any" value="3.5"></div>
+<div><label for="ans">Durée (années)</label><input id="ans" type="number" inputmode="numeric" min="1" max="40" step="1" value="20"></div></div>
+<div class="two row">
+<div><label for="ass">Assurance (% par an)</label><input id="ass" type="number" inputmode="decimal" min="0" max="5" step="any" value="0.3"></div>
+<div><label for="rev">Revenus mensuels (€)</label><input id="rev" type="number" inputmode="decimal" min="0" step="any" placeholder="facultatif"></div></div>
+<p style="font-size:.85rem;color:var(--soft);margin:0">Assurance calculée sur le capital emprunté. Les revenus servent à estimer votre taux d’endettement.</p>
+</div>
+<div class="out" aria-live="polite">
+<div class="big"><small id="b-l">Mensualité avec assurance</small><strong id="b-v">0 €</strong><small id="b-s"></small></div>
+<div class="bar" id="bar"></div>
+<div class="leg"><span style="--c:var(--ok)">Capital</span><span style="--c:var(--accent)">Intérêts</span><span style="--c:var(--blue)">Assurance</span></div>
+<dl>
+<div class="l"><dt>Capital emprunté</dt><dd id="r-c"></dd></div>
+<div class="l"><dt>Intérêts</dt><dd id="r-i"></dd></div>
+<div class="l"><dt>Assurance</dt><dd id="r-a"></dd></div>
+<div class="l tot"><dt>Coût du crédit</dt><dd id="r-k"></dd></div>
+<div class="l"><dt>Total remboursé</dt><dd id="r-t"></dd></div>
+<div class="l"><dt>Mensualité hors assurance</dt><dd id="r-h"></dd></div>
+<div class="l"><dt>Taux d’endettement</dt><dd id="r-e"></dd></div></dl>
+<ul class="msgs" id="msgs"></ul>
+<div class="btns"><button class="btn" id="copy" type="button">Copier le résultat</button><button class="btn" id="print" type="button">Imprimer</button></div>
+</div></div>
+
+<div class="slot">Espace publicitaire : collez ici le code Google AdSense une fois le compte validé</div>
+
+<section id="amort"><h2>Tableau d’amortissement</h2>
+<p>Année par année, voici ce que vous remboursez et ce qu’il vous reste à devoir.</p>
+<div class="scroll"><table><thead><tr><th>Année</th><th>Capital</th><th>Intérêts</th><th>Assurance</th><th>Reste dû</th></tr></thead><tbody id="ya"></tbody></table></div>
+<details id="dm"><summary>Voir le détail mois par mois</summary>
+<div class="scroll" style="margin-top:10px"><table><thead><tr><th>Mois</th><th>Mensualité</th><th>Capital</th><th>Intérêts</th><th>Reste dû</th></tr></thead><tbody id="mo"></tbody></table></div></details></section>
+
+<section><h2>Comparaison selon la durée</h2>
+<p>Pour le même montant et le même taux, plus la durée est longue, plus la mensualité baisse mais plus le crédit coûte cher.</p>
+<div class="scroll"><table><thead><tr><th>Durée</th><th>Mensualité</th><th>Coût du crédit</th></tr></thead><tbody id="dur"></tbody></table></div></section>
+
+<div class="slot">Espace pour vos liens d’affiliation : comparateur de prêt, courtier, assurance emprunteur</div>
+
+<section id="faq"><h2>Questions fréquentes</h2>
+<details><summary>Comment calculer la mensualité d’un prêt ?</summary><p>Elle dépend du capital, du taux et de la durée. Chaque mois, une partie rembourse les intérêts et le reste rembourse le capital. L’assurance s’ajoute à ce montant.</p></details>
+<details><summary>Quel taux d’endettement maximum ?</summary><p>Les banques retiennent en général 35 % des revenus, assurance comprise. Renseignez vos revenus pour voir où vous en êtes.</p></details>
+<details><summary>Quelle différence avec le TAEG ?</summary><p>Le TAEG inclut tous les frais (dossier, garantie, assurance). Ce simulateur prend en compte le taux et l’assurance, mais pas les frais de dossier et de garantie : demandez le TAEG à votre banque.</p></details>
+<details><summary>Le résultat est-il contractuel ?</summary><p>Non, c’est une simulation indicative. Seule l’offre de prêt de votre banque fait foi.</p></details></section>
+</main>
+<footer><div class="wrap">
+<p><b>CalculNet</b> propose des outils indicatifs, sans valeur de conseil financier. Un crédit vous engage et doit être remboursé.</p>
+<p>Mentions légales : éditeur [votre nom ou pseudo], contact [votre e-mail]. Hébergement : GitHub Pages.</p>
+<p>Confidentialité : les calculs se font dans votre navigateur et aucune donnée saisie n’est envoyée ni enregistrée. Des cookies publicitaires pourront être utilisés si de la publicité est affichée.</p>
+</div></footer>
+<script>
+var mode="c",$=function(i){return document.getElementById(i)};
+var e0=function(n){return n.toLocaleString("fr-FR",{style:"currency",currency:"EUR",maximumFractionDigits:0})};
+var e2=function(n){return n.toLocaleString("fr-FR",{style:"currency",currency:"EUR"})};
+var pc=function(n){return n.toFixed(1).replace(".",",")+" %"};
+function fac(i,n){return i===0?1/n:i/(1-Math.pow(1+i,-n))}
+function pay(C,t,n,a){var i=t/1200,m=C*fac(i,n),as=C*a/1200;return{m:m,as:as,tot:(m+as)*n}}
+function calc(){
+ var v=parseFloat($("mont").value)||0,t=parseFloat($("taux").value)||0,y=Math.max(1,Math.min(40,parseInt($("ans").value,10)||1)),a=parseFloat($("ass").value)||0,rev=parseFloat($("rev").value)||0;
+ var n=y*12,i=t/1200,C;
+ if(mode==="c")C=v;else C=v/(fac(i,n)+a/1200);
+ var p=pay(C,t,n,a),M=p.m+p.as,tot=p.tot,ints=p.m*n-C,ass=p.as*n,cost=tot-C;
+ $("b-v").textContent=e2(mode==="c"?M:C).replace(/\s?€/,"")+" €";
+ $("b-l").textContent=mode==="c"?"Mensualité avec assurance":"Capital que vous pouvez emprunter";
+ if(mode==="c")$("b-v").textContent=e2(M);else $("b-v").textContent=e0(C);
+ $("b-s").textContent=mode==="c"?"pendant "+y+" ans":"avec "+e2(M)+" par mois pendant "+y+" ans";
+ $("r-c").textContent=e0(C);$("r-i").textContent=e0(ints);$("r-a").textContent=e0(ass);$("r-k").textContent=e0(cost);$("r-t").textContent=e0(tot);$("r-h").textContent=e2(p.m);
+ var w=function(x){return tot>0?(x/tot*100).toFixed(2):0};
+ $("bar").innerHTML='<i style="width:'+w(C)+'%;background:var(--ok)"></i><i style="width:'+w(ints)+'%;background:var(--accent)"></i><i style="width:'+w(ass)+'%;background:var(--blue)"></i>';
+ var h='<li class="i">Le crédit vous coûte '+pc(C>0?cost/C*100:0)+' du capital emprunté.</li>';
+ if(rev>0){var d=M/rev*100;$("r-e").textContent=pc(d);h+=d>35?'<li class="w">Taux d’endettement supérieur à 35 % : la plupart des banques refuseront ce dossier.</li>':'<li>Taux d’endettement sous la limite habituelle de 35 %.</li>'}
+ else $("r-e").textContent="renseignez vos revenus";
+ $("msgs").innerHTML=h;
+ // amortissement
+ var bal=C,ya=[],mo=[],yr=0,ci=0,cc=0,k;
+ for(k=1;k<=n;k++){var it=bal*i,cp=p.m-it;bal=Math.max(0,bal-cp);cc+=cp;ci+=it;mo.push([k,M,cp,it,bal]);
+  if(k%12===0||k===n){ya.push([Math.ceil(k/12),cc,ci,p.as*(k%12||12),bal]);cc=0;ci=0}}
+ $("ya").innerHTML=ya.map(function(r){return"<tr><td>"+r[0]+"</td><td class='n'>"+e0(r[1])+"</td><td class='n'>"+e0(r[2])+"</td><td class='n'>"+e0(r[3])+"</td><td class='n'>"+e0(r[4])+"</td></tr>"}).join("");
+ window._mo=mo;if($("dm").open)moRender();
+ var rows="",ds=[10,15,20,25,30];
+ ds.forEach(function(d){var q=pay(C,t,d*12,a);rows+='<tr'+(d===y?' style="font-weight:700"':'')+'><td>'+d+' ans</td><td class="n">'+e2(q.m+q.as)+'</td><td class="n">'+e0(q.tot-C)+'</td></tr>'});
+ $("dur").innerHTML=rows;
+ window._t="Prêt de "+e0(C)+" sur "+y+" ans à "+t+" % : mensualité "+e2(M)+", coût du crédit "+e0(cost)+", total remboursé "+e0(tot)+".";
+}
+function moRender(){$("mo").innerHTML=window._mo.map(function(r){return"<tr><td>"+r[0]+"</td><td class='n'>"+e2(r[1])+"</td><td class='n'>"+e2(r[2])+"</td><td class='n'>"+e2(r[3])+"</td><td class='n'>"+e0(r[4])+"</td></tr>"}).join("")}
+$("dm").addEventListener("toggle",function(){if($("dm").open)moRender()});
+["mont","taux","ans","ass","rev"].forEach(function(i){$(i).addEventListener("input",calc);$(i).addEventListener("change",calc)});
+function setMode(x){mode=x;$("m-c").setAttribute("aria-pressed",x==="c");$("m-m").setAttribute("aria-pressed",x==="m");
+ $("l-mont").textContent=x==="c"?"Montant emprunté (€)":"Mensualité maximale avec assurance (€)";
+ $("mont").value=x==="c"?200000:1200;calc()}
+$("m-c").onclick=function(){setMode("c")};$("m-m").onclick=function(){setMode("m")};
+$("print").onclick=function(){window.print()};
+$("copy").onclick=function(){var b=$("copy");try{navigator.clipboard.writeText(window._t).then(function(){b.textContent="Copié";setTimeout(function(){b.textContent="Copier le résultat"},1500)})}catch(e){b.textContent="Copie impossible"}};
+calc();
+</script>
+</body>
+</html>
