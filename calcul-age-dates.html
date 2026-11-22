@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calcul d’âge et de dates : âge exact, jours entre deux dates | CalculNet</title>
+<meta name="description" content="Calculez votre âge exact en années, mois et jours, le nombre de jours entre deux dates, ou ajoutez des jours à une date. Gratuit.">
+<meta name="theme-color" content="#0F1F3D">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Comment calculer le nombre de jours entre deux dates ?", "acceptedAnswer": {"@type": "Answer", "text": "On soustrait la date de début à la date de fin. L’outil le fait pour vous, en tenant compte des années bissextiles."}}, {"@type": "Question", "name": "Comment connaître la date dans 90 jours ?", "acceptedAnswer": {"@type": "Answer", "text": "Choisissez « Ajouter ou retirer des jours », indiquez votre date de départ et 90 jours : la date obtenue s’affiche."}}, {"@type": "Question", "name": "Le jour de départ est-il compté ?", "acceptedAnswer": {"@type": "Answer", "text": "Non, l’écart compte les jours qui séparent les deux dates, sans compter le jour de début."}}]}</script>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="index.html">Calcul<b>Net</b></a><nav><a href="index.html">Tous les outils</a><a href="#calcul">Calculateur</a><a href="#faq">Questions</a></nav></div></header>
+<div class="hero"><div class="wrap"><h1>Calcul d’âge et de dates</h1><p>Âge exact, durée entre deux dates, date dans X jours : tout est calculé en une seconde.</p><ul class="chips"><li>100 % gratuit</li><li>Sans inscription</li><li>Aucune donnée enregistrée</li></ul></div></div>
+<main class="wrap">
+<div class="tool" id="calcul"><div class="inputs"><div class="row"><label for="mode">Que voulez-vous calculer ?</label><select id="mode"><option value="age" selected>Âge exact</option><option value="ecart">Jours entre deux dates</option><option value="ajout">Ajouter ou retirer des jours</option></select></div><div class="row"><label for="d1" data-lab="{&quot;age&quot;: &quot;Date de naissance&quot;, &quot;ecart&quot;: &quot;Date de début&quot;, &quot;ajout&quot;: &quot;Date de départ&quot;}">Date</label><input id="d1" type="date" value="2000-01-01"></div><div class="row" data-if="age,ecart"><label for="d2" data-lab="{&quot;age&quot;: &quot;Calculer l’âge à la date du&quot;, &quot;ecart&quot;: &quot;Date de fin&quot;}">Date de fin</label><input id="d2" type="date" value=""></div><div class="row" data-if="ajout"><label for="n">Nombre de jours (négatif pour retirer)</label><input id="n" type="number" inputmode="decimal" min="-100000" step="any" value="90"></div></div>
+<div class="out" aria-live="polite"><div class="big"><small id="b-l"></small><strong id="b-v">0</strong><small id="b-s"></small></div><dl id="rows"></dl><ul class="msgs" id="msgs"></ul><div class="btns"><button class="btn" id="copy" type="button">Copier le résultat</button><button class="btn" id="print" type="button">Imprimer</button></div></div></div>
+<div class="slot">Espace publicitaire : collez ici le code Google AdSense une fois le compte validé</div>
+<section><h2>Comment calculer un âge ou une durée</h2><p>L’âge exact se calcule en comptant les années complètes depuis la date de naissance, puis les mois et les jours restants. Pour une durée entre deux dates, on compte les jours qui les séparent. Ces calculs servent pour un dossier administratif, un délai de préavis ou de rétractation, ou simplement par curiosité.</p></section>
+<section id="faq"><h2>Questions fréquentes</h2><details><summary>Comment calculer le nombre de jours entre deux dates ?</summary><p>On soustrait la date de début à la date de fin. L’outil le fait pour vous, en tenant compte des années bissextiles.</p></details><details><summary>Comment connaître la date dans 90 jours ?</summary><p>Choisissez « Ajouter ou retirer des jours », indiquez votre date de départ et 90 jours : la date obtenue s’affiche.</p></details><details><summary>Le jour de départ est-il compté ?</summary><p>Non, l’écart compte les jours qui séparent les deux dates, sans compter le jour de début.</p></details></section>
+</main>
+<footer><div class="wrap"><p><b>CalculNet</b> propose des outils indicatifs, sans valeur de conseil fiscal, juridique, médical ou comptable.</p><p>Mentions légales : éditeur [votre nom ou pseudo], contact [votre e-mail]. Hébergement : Cloudflare Pages.</p><p>Confidentialité : les calculs se font dans votre navigateur et aucune donnée saisie n’est envoyée ni enregistrée. Des cookies publicitaires pourront être utilisés si de la publicité est affichée.</p></div></footer>
+<script>
+var $=function(i){return document.getElementById(i)};
+var eur2=function(n){return n.toLocaleString("fr-FR",{style:"currency",currency:"EUR"})};
+var nf=function(n,d){return n.toLocaleString("fr-FR",{maximumFractionDigits:d===undefined?2:d})};
+function V(i){var e=$(i);return e.type==="number"?(parseFloat(e.value)||0):e.value}
+function D(s){var p=String(s).split("-");return p.length===3?Date.UTC(+p[0],+p[1]-1,+p[2]):NaN}
+function run(){
+ var m=$("mode")?$("mode").value:"";
+ document.querySelectorAll("[data-if]").forEach(function(e){e.style.display=e.dataset.if.split(",").indexOf(m)>-1?"":"none"});
+ document.querySelectorAll("[data-lab]").forEach(function(e){var o=JSON.parse(e.dataset.lab);if(o[m])e.textContent=o[m]});
+ var r=TOOL();
+ $("b-l").textContent=r.l;$("b-v").textContent=r.v;$("b-s").textContent=r.s||"";
+ $("rows").innerHTML=r.rows.map(function(x){return'<div class="l"><dt>'+x[0]+'</dt><dd>'+x[1]+'</dd></div>'}).join("");
+ $("msgs").innerHTML=(r.msgs||[]).map(function(x){return'<li class="'+x[0]+'">'+x[1]+'</li>'}).join("");
+ window._t=r.l+" : "+r.v+(r.s?" ("+r.s+")":"")+". "+r.rows.map(function(x){return x[0]+" : "+x[1]}).join(", ")+".";
+}
+document.querySelectorAll("input,select").forEach(function(e){e.addEventListener("input",run);e.addEventListener("change",run)});
+$("print").onclick=function(){window.print()};
+$("copy").onclick=function(){var b=$("copy");try{navigator.clipboard.writeText(window._t).then(function(){b.textContent="Copié";setTimeout(function(){b.textContent="Copier le résultat"},1500)})}catch(e){b.textContent="Copie impossible"}};
+if($("d2")&&!$("d2").value)$("d2").value=new Date().toISOString().slice(0,10);
+run();
+function TOOL(){var m=$("mode").value,a=D(V("d1")),H=864e5,fr=function(t){return new Date(t).toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long",year:"numeric",timeZone:"UTC"})};function ymd(x,y){var A=new Date(x),B=new Date(y),Y=B.getUTCFullYear()-A.getUTCFullYear(),M=B.getUTCMonth()-A.getUTCMonth(),d=B.getUTCDate()-A.getUTCDate();if(d<0){M--;d+=new Date(Date.UTC(B.getUTCFullYear(),B.getUTCMonth(),0)).getUTCDate()}if(M<0){Y--;M+=12}return[Y,M,d]}if(isNaN(a)){return{l:"Résultat",v:"-",rows:[],msgs:[["w","Choisissez une date valide."]]}}if(m==="ajout"){var n=V("n"),r=a+n*H;return{l:"Date obtenue",v:fr(r),rows:[["Date de départ",fr(a)],["Jours ajoutés",nf(n,0)]]}}var b=D(V("d2"));if(isNaN(b)){return{l:"Résultat",v:"-",rows:[],msgs:[["w","Choisissez une date de fin valide."]]}}if(m==="age"){if(b<a){return{l:"Âge",v:"-",rows:[],msgs:[["w","La date de naissance doit être avant la date de calcul."]]}}var x=ymd(a,b),j=Math.round((b-a)/H),by=new Date(b).getUTCFullYear(),nx=Date.UTC(by,new Date(a).getUTCMonth(),new Date(a).getUTCDate());if(nx<b)nx=Date.UTC(by+1,new Date(a).getUTCMonth(),new Date(a).getUTCDate());return{l:"Âge exact",v:x[0]+" ans",s:x[1]+" mois et "+x[2]+" jours",rows:[["Jours vécus",nf(j,0)],["Semaines vécues",nf(Math.floor(j/7),0)],["Prochain anniversaire dans",nf(Math.round((nx-b)/H),0)+" jours"],["Jour de naissance",fr(a).split(" ")[0]]]}}var lo=Math.min(a,b),hi=Math.max(a,b),j2=Math.round((hi-lo)/H),y2=ymd(lo,hi);return{l:"Écart",v:nf(j2,0)+" jours",s:y2[0]+" an(s), "+y2[1]+" mois et "+y2[2]+" jours",rows:[["Semaines",nf(Math.floor(j2/7),0)+" et "+(j2%7)+" jours"],["Date de début",fr(lo)],["Date de fin",fr(hi)]]};}
+</script>
+</body>
+</html>
