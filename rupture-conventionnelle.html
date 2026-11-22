@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calcul de l’indemnité de rupture conventionnelle | CalculNet</title>
+<meta name="description" content="Calculez l’indemnité minimale de rupture conventionnelle selon votre ancienneté et votre salaire, et vérifiez si votre proposition est suffisante.">
+<meta name="theme-color" content="#0F1F3D">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Quel est le montant minimum ?", "acceptedAnswer": {"@type": "Answer", "text": "Au moins l’indemnité légale de licenciement, soit un quart de mois de salaire par année jusqu’à 10 ans, puis un tiers de mois ensuite."}}, {"@type": "Question", "name": "Quels sont les délais ?", "acceptedAnswer": {"@type": "Answer", "text": "Après la signature, un délai de rétractation de 15 jours calendaires s’applique, puis l’administration dispose de 15 jours ouvrables pour homologuer la convention."}}, {"@type": "Question", "name": "Puis-je négocier plus que le minimum ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, le minimum est un plancher. Le montant se négocie avec l’employeur."}}]}</script>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="index.html">Calcul<b>Net</b></a><nav><a href="index.html">Tous les outils</a><a href="#calcul">Calculateur</a><a href="#faq">Questions</a></nav></div></header>
+<div class="hero"><div class="wrap"><h1>Rupture conventionnelle : calculez votre indemnité minimale</h1><p>Le minimum légal selon votre ancienneté, et une comparaison avec l’indemnité proposée par votre employeur.</p><ul class="chips"><li>100 % gratuit</li><li>Sans inscription</li><li>Aucune donnée enregistrée</li></ul></div></div>
+<main class="wrap">
+<div class="tool" id="calcul"><div class="inputs"><div class="row"><label for="s12">Salaire brut mensuel moyen des 12 derniers mois (€)</label><input id="s12" type="number" inputmode="decimal" min="0" step="any" value="2500"></div><div class="row"><label for="s3">Salaire brut mensuel moyen des 3 derniers mois (€, facultatif)</label><input id="s3" type="number" inputmode="decimal" min="0" step="any" value="0"></div><div class="row"><label for="an">Ancienneté : années complètes</label><input id="an" type="number" inputmode="decimal" min="0" step="1" value="6"></div><div class="row"><label for="mo">Ancienneté : mois en plus</label><input id="mo" type="number" inputmode="decimal" min="0" step="1" value="0"></div><div class="row"><label for="prop">Indemnité proposée (€, facultatif)</label><input id="prop" type="number" inputmode="decimal" min="0" step="any" value="0"></div></div>
+<div class="out" aria-live="polite"><div class="big"><small id="b-l"></small><strong id="b-v">0</strong><small id="b-s"></small></div><dl id="rows"></dl><ul class="msgs" id="msgs"></ul><div class="btns"><button class="btn" id="copy" type="button">Copier le résultat</button><button class="btn" id="print" type="button">Imprimer</button></div></div></div>
+<div class="slot">Espace publicitaire : collez ici le code Google AdSense une fois le compte validé</div>
+<section><h2>Comment est calculée l’indemnité de rupture conventionnelle</h2><p>L’indemnité de rupture conventionnelle ne peut pas être inférieure à l’indemnité légale de licenciement : un quart de mois de salaire par année d’ancienneté jusqu’à 10 ans, puis un tiers de mois au-delà. Le salaire de référence est le plus favorable entre la moyenne des 12 derniers mois et celle des 3 derniers mois. Le montant peut être négocié à la hausse.</p></section>
+<section id="faq"><h2>Questions fréquentes</h2><details><summary>Quel est le montant minimum ?</summary><p>Au moins l’indemnité légale de licenciement, soit un quart de mois de salaire par année jusqu’à 10 ans, puis un tiers de mois ensuite.</p></details><details><summary>Quels sont les délais ?</summary><p>Après la signature, un délai de rétractation de 15 jours calendaires s’applique, puis l’administration dispose de 15 jours ouvrables pour homologuer la convention.</p></details><details><summary>Puis-je négocier plus que le minimum ?</summary><p>Oui, le minimum est un plancher. Le montant se négocie avec l’employeur.</p></details></section>
+</main>
+<footer><div class="wrap"><p><a href="mentions-legales.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a> · <a href="a-propos.html">À propos</a></p><p><b>CalculNet</b> propose des outils indicatifs, sans valeur de conseil fiscal, juridique, médical ou comptable.</p><p>Hébergement : Cloudflare Pages. Les calculs se font dans votre navigateur : aucune donnée saisie n’est envoyée ni enregistrée.</p></div></footer>
+<script>
+var $=function(i){return document.getElementById(i)};
+var eur2=function(n){return n.toLocaleString("fr-FR",{style:"currency",currency:"EUR"})};
+var nf=function(n,d){return n.toLocaleString("fr-FR",{maximumFractionDigits:d===undefined?2:d})};
+function V(i){var e=$(i);return e.type==="number"?(parseFloat(e.value)||0):e.value}
+function D(s){var p=String(s).split("-");return p.length===3?Date.UTC(+p[0],+p[1]-1,+p[2]):NaN}
+function run(){
+ var m=$("mode")?$("mode").value:"";
+ document.querySelectorAll("[data-if]").forEach(function(e){e.style.display=e.dataset.if.split(",").indexOf(m)>-1?"":"none"});
+ document.querySelectorAll("[data-lab]").forEach(function(e){var o=JSON.parse(e.dataset.lab);if(o[m])e.textContent=o[m]});
+ var r=TOOL();
+ $("b-l").textContent=r.l;$("b-v").textContent=r.v;$("b-s").textContent=r.s||"";
+ $("rows").innerHTML=r.rows.map(function(x){return'<div class="l"><dt>'+x[0]+'</dt><dd>'+x[1]+'</dd></div>'}).join("");
+ $("msgs").innerHTML=(r.msgs||[]).map(function(x){return'<li class="'+x[0]+'">'+x[1]+'</li>'}).join("");
+ window._t=r.l+" : "+r.v+(r.s?" ("+r.s+")":"")+". "+r.rows.map(function(x){return x[0]+" : "+x[1]}).join(", ")+".";
+}
+document.querySelectorAll("input,select").forEach(function(e){e.addEventListener("input",run);e.addEventListener("change",run)});
+$("print").onclick=function(){window.print()};
+$("copy").onclick=function(){var b=$("copy");try{navigator.clipboard.writeText(window._t).then(function(){b.textContent="Copié";setTimeout(function(){b.textContent="Copier le résultat"},1500)})}catch(e){b.textContent="Copie impossible"}};
+if($("d2")&&!$("d2").value)$("d2").value=new Date().toISOString().slice(0,10);
+run();
+function TOOL(){var a=V("an")+V("mo")/12,ref=Math.max(V("s12"),V("s3")),i=ref*(0.25*Math.min(a,10)+(1/3)*Math.max(a-10,0)),pr=V("prop"),ms=[];if(a<8/12){return{l:"Indemnité minimale",v:eur2(0),rows:[["Ancienneté",nf(a,2)+" an(s)"]],msgs:[["i","En dessous de 8 mois d’ancienneté, aucun minimum légal ne s’applique, mais une indemnité peut être négociée."]]}}if(pr>0){ms.push(pr<i-0.5?["w","L’indemnité proposée ("+eur2(pr)+") est inférieure au minimum légal."]:["","L’indemnité proposée ("+eur2(pr)+") respecte le minimum légal."])}ms.push(["i","Après la signature, vous disposez de 15 jours calendaires pour vous rétracter, puis la demande est transmise à l’administration pour homologation. Votre convention collective peut prévoir mieux."]);return{l:"Indemnité minimale",v:eur2(i),s:"brute",rows:[["Salaire de référence",eur2(ref)],["Ancienneté retenue",nf(a,2)+" an(s)"],["Tranche jusqu’à 10 ans (1/4)",eur2(ref*0.25*Math.min(a,10))],["Tranche au-delà de 10 ans (1/3)",eur2(ref/3*Math.max(a-10,0))]],msgs:ms};}
+</script>
+</body>
+</html>
