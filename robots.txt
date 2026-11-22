@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://calculnet-7wc.pages.dev/sitemap.xml
