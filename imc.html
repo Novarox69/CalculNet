@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calcul de l’IMC : indice de masse corporelle | CalculNet</title>
+<meta name="description" content="Calculez gratuitement votre indice de masse corporelle (IMC) à partir de votre poids et de votre taille, avec l’interprétation selon l’OMS.">
+<meta name="theme-color" content="#0F1F3D">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Quelle est la formule de l’IMC ?", "acceptedAnswer": {"@type": "Answer", "text": "IMC = poids (kg) divisé par taille (m) au carré. Pour 70 kg et 1,75 m : 70 / 3,06 = 22,9."}}, {"@type": "Question", "name": "Quel est un IMC normal ?", "acceptedAnswer": {"@type": "Answer", "text": "Selon l’OMS, un IMC entre 18,5 et 24,9 correspond à une corpulence normale chez l’adulte."}}, {"@type": "Question", "name": "L’IMC est-il fiable pour tout le monde ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Il convient mal aux sportifs très musclés, aux enfants, aux personnes âgées et aux femmes enceintes. Un médecin reste la meilleure référence."}}]}</script>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="index.html">Calcul<b>Net</b></a><nav><a href="index.html">Tous les outils</a><a href="#calcul">Calculateur</a><a href="#faq">Questions</a></nav></div></header>
+<div class="hero"><div class="wrap"><h1>Calculateur d’IMC</h1><p>Entrez votre poids et votre taille pour obtenir votre IMC et sa catégorie selon l’OMS.</p><ul class="chips"><li>100 % gratuit</li><li>Sans inscription</li><li>Aucune donnée enregistrée</li></ul></div></div>
+<main class="wrap">
+<div class="tool" id="calcul"><div class="inputs"><div class="row"><label for="p">Poids (kg)</label><input id="p" type="number" inputmode="decimal" min="0" step="0.1" value="70"></div><div class="row"><label for="h">Taille (cm)</label><input id="h" type="number" inputmode="decimal" min="0" step="1" value="175"></div></div>
+<div class="out" aria-live="polite"><div class="big"><small id="b-l"></small><strong id="b-v">0</strong><small id="b-s"></small></div><dl id="rows"></dl><ul class="msgs" id="msgs"></ul><div class="btns"><button class="btn" id="copy" type="button">Copier le résultat</button><button class="btn" id="print" type="button">Imprimer</button></div></div></div>
+<div class="slot">Espace publicitaire : collez ici le code Google AdSense une fois le compte validé</div>
+<section><h2>Comment calculer l’IMC</h2><p>L’indice de masse corporelle se calcule en divisant le poids en kilogrammes par la taille en mètres, élevée au carré. L’Organisation mondiale de la santé le classe ainsi : moins de 18,5 pour l’insuffisance pondérale, de 18,5 à 24,9 pour une corpulence normale, de 25 à 29,9 pour le surpoids, et 30 ou plus pour l’obésité.</p></section>
+<section id="faq"><h2>Questions fréquentes</h2><details><summary>Quelle est la formule de l’IMC ?</summary><p>IMC = poids (kg) divisé par taille (m) au carré. Pour 70 kg et 1,75 m : 70 / 3,06 = 22,9.</p></details><details><summary>Quel est un IMC normal ?</summary><p>Selon l’OMS, un IMC entre 18,5 et 24,9 correspond à une corpulence normale chez l’adulte.</p></details><details><summary>L’IMC est-il fiable pour tout le monde ?</summary><p>Non. Il convient mal aux sportifs très musclés, aux enfants, aux personnes âgées et aux femmes enceintes. Un médecin reste la meilleure référence.</p></details></section>
+</main>
+<footer><div class="wrap"><p><b>CalculNet</b> propose des outils indicatifs, sans valeur de conseil fiscal, juridique, médical ou comptable.</p><p>Mentions légales : éditeur [votre nom ou pseudo], contact [votre e-mail]. Hébergement : Cloudflare Pages.</p><p>Confidentialité : les calculs se font dans votre navigateur et aucune donnée saisie n’est envoyée ni enregistrée. Des cookies publicitaires pourront être utilisés si de la publicité est affichée.</p></div></footer>
+<script>
+var $=function(i){return document.getElementById(i)};
+var eur2=function(n){return n.toLocaleString("fr-FR",{style:"currency",currency:"EUR"})};
+var nf=function(n,d){return n.toLocaleString("fr-FR",{maximumFractionDigits:d===undefined?2:d})};
+function V(i){var e=$(i);return e.type==="number"?(parseFloat(e.value)||0):e.value}
+function D(s){var p=String(s).split("-");return p.length===3?Date.UTC(+p[0],+p[1]-1,+p[2]):NaN}
+function run(){
+ var m=$("mode")?$("mode").value:"";
+ document.querySelectorAll("[data-if]").forEach(function(e){e.style.display=e.dataset.if.split(",").indexOf(m)>-1?"":"none"});
+ document.querySelectorAll("[data-lab]").forEach(function(e){var o=JSON.parse(e.dataset.lab);if(o[m])e.textContent=o[m]});
+ var r=TOOL();
+ $("b-l").textContent=r.l;$("b-v").textContent=r.v;$("b-s").textContent=r.s||"";
+ $("rows").innerHTML=r.rows.map(function(x){return'<div class="l"><dt>'+x[0]+'</dt><dd>'+x[1]+'</dd></div>'}).join("");
+ $("msgs").innerHTML=(r.msgs||[]).map(function(x){return'<li class="'+x[0]+'">'+x[1]+'</li>'}).join("");
+ window._t=r.l+" : "+r.v+(r.s?" ("+r.s+")":"")+". "+r.rows.map(function(x){return x[0]+" : "+x[1]}).join(", ")+".";
+}
+document.querySelectorAll("input,select").forEach(function(e){e.addEventListener("input",run);e.addEventListener("change",run)});
+$("print").onclick=function(){window.print()};
+$("copy").onclick=function(){var b=$("copy");try{navigator.clipboard.writeText(window._t).then(function(){b.textContent="Copié";setTimeout(function(){b.textContent="Copier le résultat"},1500)})}catch(e){b.textContent="Copie impossible"}};
+if($("d2")&&!$("d2").value)$("d2").value=new Date().toISOString().slice(0,10);
+run();
+function TOOL(){var p=V("p"),h=V("h")/100;if(!p||!h){return{l:"IMC",v:"-",rows:[],msgs:[["w","Indiquez un poids et une taille."]]}}var i=p/(h*h),c=i<18.5?"Insuffisance pondérale":i<25?"Corpulence normale":i<30?"Surpoids":i<35?"Obésité modérée":i<40?"Obésité sévère":"Obésité massive";return{l:"Votre IMC",v:nf(i,1),s:c,rows:[["Catégorie",c],["Poids pour un IMC de 18,5 à 24,9",nf(18.5*h*h,1)+" à "+nf(24.9*h*h,1)+" kg"]],msgs:[["i","L’IMC est un repère pour les adultes. Il ne tient pas compte de la masse musculaire, de l’âge ni de la morphologie. Pour toute question de santé, parlez-en à un médecin."]]};}
+</script>
+</body>
+</html>
